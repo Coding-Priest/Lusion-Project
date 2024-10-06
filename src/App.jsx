@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import Navbar from './Components/Navbar'
 import Hero from './Components/Hero'
 import Cards from './Components/Cards'
+import BackLine from './Components/BackLine'
 import './Components/styles.css';
 import './index.css'
 import CardSVG from './Components/CardSVG'
@@ -23,8 +24,8 @@ function App() {
       <div className="cards">
         <Cards />
       </div>
-      <div className="content inline-block p-30 invisible">
-        <Hero />
+      <div>
+        <BackLine />
       </div>
       <div className="content inline-block p-30 invisible">
         <Hero />
@@ -38,6 +39,10 @@ function App() {
       <div className="content inline-block p-30 invisible">
         <Hero />
       </div>
+      <div className="content inline-block p-30 invisible">
+        <Hero />
+      </div>
+      
       
     </>
   )

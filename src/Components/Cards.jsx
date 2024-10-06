@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CardSVG from './CardSVG'
-import {motion, useScroll, useSpring, useMotionValueEvent} from "framer-motion"
+import {motion, useScroll, useSpring, useMotionValueEvent, keyframes} from "framer-motion"
 import Strategy from './Strategy'
 import Creative from './Creative'
 import Tech from './Tech'
@@ -14,10 +14,6 @@ const Cards = () => {
   const [smoothScrollSlow, setSmoothScrollSlow] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
   const [flip, setFlip] = useState(false);
-
-
-  const parent_div = document.getElementById('card_holder');
-  const card_div = document.getElementById('card');
 
   const clockwise_rotation_limit = 16;
   const anticlockwise_rotation_limit = (clockwise_rotation_limit * 25) / 60;
