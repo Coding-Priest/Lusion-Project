@@ -8,7 +8,7 @@ import BackLine from './Components/BackLine'
 import './Components/styles.css';
 import './index.css'
 import CardSVG from './Components/CardSVG'
-
+import SineWave from './Components/SineWave'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -42,8 +42,6 @@ function App() {
       <div className="content inline-block p-30 invisible">
         <Hero />
       </div>
-      
-      
     </>
   )
 }

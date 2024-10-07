@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './styles.scss';
 import './styles.css'
 import {motion, AnimatePresence} from "framer-motion";
+import SineWave from './SineWave';
 
 const Navbar = () => {
   const [mousePos, setMousePos] = useState({posX: 0, posY: 0});
@@ -9,6 +10,10 @@ const Navbar = () => {
   const [sizes, setSizes] = useState([]);
   const [isHovered, setHovered] = useState(false);
   const [isMenuHovered, setMenuHovered] = useState(false);
+  const [isClicked, setClicked] = useState(false);
+  const [isCircleClicked, setCircleClicked] = useState(false);
+
+  const btnRef = useRef(null);
 
 
   useEffect(() => {
@@ -58,13 +63,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className='flex flex-row items-center justify-between'>
-      <div className='text-white font-medium text-4xl p-12 ml-5'>LUSION</div>
-      <div className='flex flex-row p-10 position-relative'>
-        <div className='p-2 pr-5 position-absolute mt-1'>
+    <div className='flex flex-row items-center justify-between p-5'>
+      <div className='text-white font-medium text-4xl ml-5'>LUSION</div>
+      <div className='flex flex-row position-relative items-center gap-5'>
+        <div onClick = {()=>setClicked(!isClicked)} className=' overflow-hidden rounded-full position-absolute -z-1000 flex justify-center items-center  h-fit'>
           <motion.button
             id = "lusion_button" 
-            className= "bg-white py-2 px-3 rounded-full font-bold radial-gradient-bg text-black"
+            ref={btnRef}
+            className= "bg-white py-2 px-3 rounded-full font-bold radial-gradient-bg text-black relative -z-1000"
             whileHover = {{
               '--size': sizes,
               '--left': [`${circlePos.left}%`],
@@ -82,11 +88,20 @@ const Navbar = () => {
               }
             }}
           >
-            —
+            {isClicked ? (
+            <div style={{width: `${btnRef.current ? btnRef.current.getBoundingClientRect().width-20 : 0}px`}} className=' overflow-hidden ml-[10px] left-0 h-full top-0 absolute z-20'>
+            <div 
+             className=' w-56 z-10 h-full '>
+              <SineWave />
+            </div>
+            </div>) : ("—")}
+            
+            
+            <h1 className={` ${!isClicked ? "hidden" : "block"} opacity-0`}>—</h1>
           </motion.button>
 
         </div>
-        <div className='p-2 mb-4 pr-5'>
+        <div className=''>
           <motion.button 
             style = {{backgroundColor: 'rgba(43, 46, 58, 1)'}} 
             className = 'py-3 px-5 rounded-full font-semibold text-white text-base'
@@ -142,7 +157,7 @@ const Navbar = () => {
             </AnimatePresence>
           </motion.button>
         </div>
-        <div className='p-2 mb-4 mt-1'>
+        <div className=''>
           <motion.button 
             className='bg-white py-2 px-4 rounded-full font-semibold'
             onHoverStart={() => setMenuHovered(true)}
