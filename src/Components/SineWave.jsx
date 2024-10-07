@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {motion, useScroll, useSpring, useMotionValueEvent} from "framer-motion"
 
-const SineWave = () => {
+const SineWave = ({isCircleClicked}) => {
   var path = "M 12 99 Q 29 62 50 100 T 89 99 T 125 99 T 160 98 T 194 97 T 230 97 T 269 96 T 307 93"
   var repeat = 5;
 
@@ -17,6 +17,7 @@ const SineWave = () => {
         left: '0%'
       }}
     >
+      {console.log(isCircleClicked)}
       <motion.svg
         style = {{width: "100%", height: "100%"}}
         viewBox= "5 60 400 400"
@@ -40,7 +41,7 @@ const SineWave = () => {
             repeat: Infinity,
             repeatType: "Loop"
           }}
-          stroke = "#000000"
+          stroke = {isCircleClicked ? "#FFFFFF" : "#000000"}
           strokeWidth={4}
           strokeDasharray= "0 1"
           fill = "none"

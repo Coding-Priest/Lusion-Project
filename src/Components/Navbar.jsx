@@ -66,7 +66,16 @@ const Navbar = () => {
     <div className='flex flex-row items-center justify-between p-5'>
       <div className='text-white font-medium text-4xl ml-5'>LUSION</div>
       <div className='flex flex-row position-relative items-center gap-5'>
-        <div onClick = {()=>setClicked(!isClicked)} className=' overflow-hidden rounded-full position-absolute -z-1000 flex justify-center items-center  h-fit'>
+        <div onClick = {()=>{
+          setClicked(!isClicked)
+          }} 
+          onMouseEnter = {() =>{
+            setCircleClicked(true)
+          }}
+          onMouseLeave={() => {
+            setCircleClicked(false)
+          }}
+          className=' overflow-hidden rounded-full position-absolute -z-1000 flex justify-center items-center  h-fit'>
           <motion.button
             id = "lusion_button" 
             ref={btnRef}
@@ -92,7 +101,9 @@ const Navbar = () => {
             <div style={{width: `${btnRef.current ? btnRef.current.getBoundingClientRect().width-20 : 0}px`}} className=' overflow-hidden ml-[10px] left-0 h-full top-0 absolute z-20'>
             <div 
              className=' w-56 z-10 h-full '>
-              <SineWave />
+              <SineWave 
+                isCircleClicked={isCircleClicked}
+              />
             </div>
             </div>) : ("—")}
             
